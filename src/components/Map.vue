@@ -14,11 +14,19 @@ export default {
     initMap() {
       let options = {atmosphere: true, center: [0, 0], zoom: 0};
       let earth = new WE.map('map', options);
+
       WE.tileLayer(
         'https://api.mapbox.com/styles/v1/drewjgray/ck0bpygie40jp1crykgq18klw/tiles/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZHJld2pncmF5IiwiYSI6ImNqdTRxMzgwYzBraGg0ZXM3ZmIzOWExbHIifQ.wvV7ivQng_NR5L16xhl-DA', {
             tileSize: 512,
             zoomOffset: -1,
         }).addTo(earth);
+
+      WE.tileLayer(
+          'https://gis.unep-wcmc.org/arcgis/rest/services/marine/WCMC_035_MeanSeaSurfaceTemperature2015/MapServer/tile/{z}/{y}/{x}'
+      ).addTo(earth);
+
+      let marker = WE.marker([37.898117, -122.676366]).addTo(earth);
+      marker.bindPopup("<b>Bolinas</b><br>")
     }
   }
 }
